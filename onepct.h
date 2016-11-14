@@ -31,7 +31,7 @@ static const string kDummyString = "dummystring";
 class OnePct {
 public:
 /****************************************************************
- * Constructors and destructors for the class. 
+ * Constructors and destructors for the class.
 **/
  OnePct();
  OnePct(Scanner& infile);
@@ -77,7 +77,7 @@ private:
                     ofstream& out_stream);
   int DoStatistics(int iteration, const Configuration& config, int station_count,
                    map<int, int>& map_for_histo, ofstream& out_stream);
-                    
+
   void ComputeMeanAndDev();
   void RunSimulationPct2(int stations);
 
