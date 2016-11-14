@@ -32,10 +32,34 @@ int Configuration::GetMaxServiceSubscript() const {
 /****************************************************************
  * General functions.
  **/
-/****************************************************************
+/****************************************************************    
  **/
+/****************************************************************    
+  * Function: ReadConfiguration
+  * Takes in a Scanner
+  * The function reads a line which is opened with scanline. 
+  * The first int in the line is the seed. The second int is the 
+  * number of hours the voting stations are open. From this it
+  * computes the number of seconds the stations are open. The 
+  * third int in the line is the average time someone takes to 
+  * vote. The fourth int is the minimum number of possible voters 
+  * in the simulation and the fifth is the maximum number of 
+  * voters in the simulation. The sixth int is the number of
+  * someone can wait at the polls before the wait time is too long.
+  * Seventh and final int is the number of times the simulation
+  * will run. 
+  *
+  * The next line of the file is then read. The first double
+  * in the line is a zero arrival rate. A loop then iterates
+  * through each hour the polls are open, reading in the 
+  * percentage of people who voted during that hour and pushing
+  * them to the vector arrival_fractions_. 
+  *
+  * TODO service_times_file and actual_service_times_
+  **/
 void Configuration::ReadConfiguration(Scanner& instream) {
   /*
+ 
    */
   string line;
   ScanLine scanline;
