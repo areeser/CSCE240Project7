@@ -1,6 +1,6 @@
 #include "onepct.h"
 /****************************************************************
-* Implementation for the 'OnePct' class.
+* Implementation for the 'OnePct' class.  "One Precinct"
 *
 * Author/copyright:  Duncan Buell. All rights reserved.
 * Date: 21 May 2013
@@ -101,7 +101,7 @@ void OnePct::CreateVoters(const Configuration& config, MyRandom& random,
   for (int hour = 0; hour < config.election_day_length_hours_; ++hour) {
     percent = config.arrival_fractions_.at(hour);
     int voters_this_hour = round((percent / 100.0) * pct_expected_voters_);
-    if (0 == hour%2) 
+    if (0 == hour%2)
       ++voters_this_hour;
 
     int arrival = hour*3600;
@@ -211,18 +211,18 @@ void OnePct::RunSimulationPct(const Configuration& config,
 
   int min_station_count = pct_expected_voters_ * config.time_to_vote_mean_seconds_;
   min_station_count = min_station_count / (config.election_day_length_hours_*3600);
-  if (min_station_count <= 0) 
+  if (min_station_count <= 0)
     min_station_count = 1;
-  
+
   int max_station_count = min_station_count + config.election_day_length_hours_;
 
   bool done_with_this_count = false;
   for (int stations_count = min_station_count;
            stations_count <= max_station_count; ++stations_count) {
 
-    if (done_with_this_count) 
+    if (done_with_this_count)
       break;
-    
+
     done_with_this_count = true;
 
     map<int, int> map_for_histo;
@@ -263,7 +263,7 @@ void OnePct::RunSimulationPct(const Configuration& config,
     int voters_per_star = 1;
     if (map_for_histo[time_lower] > 50) {
       voters_per_star = map_for_histo[time_lower]/(50 * config.number_of_iterations_);
-      if (voters_per_star <= 0) 
+      if (voters_per_star <= 0)
         voters_per_star = 1;
     }
 
@@ -296,7 +296,7 @@ void OnePct::RunSimulationPct2(int stations_count) {
   free_stations_.clear();
   for (int i = 0; i < stations_count; ++i) {
     free_stations_.push_back(i);
-  } 
+  }
 
   voters_voting_.clear();
   voters_done_voting_.clear();
@@ -342,7 +342,7 @@ Utils::log_stream << kTag << "PENDING, VOTING, DONE    "
 */
             } // if (next_voter.GetTimeArrival() <= second) {
           } // if (free_stations_.size() > 0) {
-        } 
+        }
         else { // if (second == iter->first) {
           break; // we have walked in time past current time to arrivals in the future
         }
@@ -401,4 +401,3 @@ string OnePct::ToStringVoterMap(string label,
 
   return s;
 } // string OnePct::ToString()
-

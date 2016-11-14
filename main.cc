@@ -4,7 +4,7 @@
  * Author/copyright:  Duncan Buell. All rights reserved.
  * Date: 6 October 2016
  *
-**/
+ **/
 #include "main.h"
 
 static const string kTag = "MAIN: ";

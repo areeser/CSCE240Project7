@@ -17,14 +17,16 @@
  6 10.0
 
 LINE ONE
-RN_seed
-number of hours in election day
-time to vote mean used for estimating min number of stations
-minimum number of voters per pct for this simulation
-maximum number of voters per pct for this simulation
-waiting time (minutes) considered "too long"
-number of iterations to perform
+RN_seed (random seed)
+number of hours in election day                              (hours)
+time to vote mean used for estimating min number of stations (seconds)
+minimum number of voters per pct for this simulation         (integer)
+maximum number of voters per pct for this simulation         (integer)
+waiting time considered "too long"                           (minutes)
+
+number of simulations to perform                             (integer)
 
 LINE TWO
-percent at time zero (one number)
-pct arrival percentages per hour (13 numbers)
+Percentage of people that arrive at time zero                (one number)
+Percentage of people that arrive every hour                  (13 numbers)
+  ** Does this depend on the length of the election day
