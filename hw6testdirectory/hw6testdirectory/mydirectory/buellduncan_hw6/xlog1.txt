@@ -1,0 +1,324 @@
+Beginning execution
+infile  'xin1.txt'
+outfile 'xout1.txt'
+logfile 'xlog1.txt'
+QUEUE: enter ReadInputData
+QUEUE: leave ReadInputData
+enter InitializeVoters
+QUEUE: BACKUP
+seq#  mach# arr   start dur   done  wait   10  -22    4  -66   37  -44  -77
+seq#  mach# arr   start dur   done  wait   17  -22   10  -66   19  -44  -77
+seq#  mach# arr   start dur   done  wait   12  -22   15  -66   35  -44  -77
+seq#  mach# arr   start dur   done  wait   13  -22   17  -66   36  -44  -77
+seq#  mach# arr   start dur   done  wait   16  -22   32  -66   25  -44  -77
+seq#  mach# arr   start dur   done  wait    6  -22   33  -66   28  -44  -77
+seq#  mach# arr   start dur   done  wait    2  -22   34  -66   23  -44  -77
+seq#  mach# arr   start dur   done  wait    4  -22   37  -66   24  -44  -77
+seq#  mach# arr   start dur   done  wait   11  -22   39  -66   29  -44  -77
+seq#  mach# arr   start dur   done  wait    0  -22   40  -66   27  -44  -77
+seq#  mach# arr   start dur   done  wait    5  -22   42  -66   34  -44  -77
+seq#  mach# arr   start dur   done  wait    1  -22   43  -66   29  -44  -77
+seq#  mach# arr   start dur   done  wait    3  -22   47  -66   28  -44  -77
+seq#  mach# arr   start dur   done  wait    7  -22   69  -66   30  -44  -77
+seq#  mach# arr   start dur   done  wait   18  -22   70  -66   30  -44  -77
+seq#  mach# arr   start dur   done  wait   14  -22   73  -66   29  -44  -77
+seq#  mach# arr   start dur   done  wait    9  -22   80  -66   32  -44  -77
+seq#  mach# arr   start dur   done  wait   19  -22   82  -66   36  -44  -77
+seq#  mach# arr   start dur   done  wait   15  -22   90  -66   30  -44  -77
+seq#  mach# arr   start dur   done  wait    8  -22   95  -66   29  -44  -77
+
+leave InitializeVoters
+QUEUE: enter RunSimulation
+QUEUE: run simulation for 3 machines
+QUEUE: enter RunSimulation2 for machine count:     3
+QUEUE: PENDING VOTERS
+seq#  mach# arr   start dur   done  wait   10  -22    4  -66   37  -44  -77
+seq#  mach# arr   start dur   done  wait   17  -22   10  -66   19  -44  -77
+seq#  mach# arr   start dur   done  wait   12  -22   15  -66   35  -44  -77
+seq#  mach# arr   start dur   done  wait   13  -22   17  -66   36  -44  -77
+seq#  mach# arr   start dur   done  wait   16  -22   32  -66   25  -44  -77
+seq#  mach# arr   start dur   done  wait    6  -22   33  -66   28  -44  -77
+seq#  mach# arr   start dur   done  wait    2  -22   34  -66   23  -44  -77
+seq#  mach# arr   start dur   done  wait    4  -22   37  -66   24  -44  -77
+seq#  mach# arr   start dur   done  wait   11  -22   39  -66   29  -44  -77
+seq#  mach# arr   start dur   done  wait    0  -22   40  -66   27  -44  -77
+seq#  mach# arr   start dur   done  wait    5  -22   42  -66   34  -44  -77
+seq#  mach# arr   start dur   done  wait    1  -22   43  -66   29  -44  -77
+seq#  mach# arr   start dur   done  wait    3  -22   47  -66   28  -44  -77
+seq#  mach# arr   start dur   done  wait    7  -22   69  -66   30  -44  -77
+seq#  mach# arr   start dur   done  wait   18  -22   70  -66   30  -44  -77
+seq#  mach# arr   start dur   done  wait   14  -22   73  -66   29  -44  -77
+seq#  mach# arr   start dur   done  wait    9  -22   80  -66   32  -44  -77
+seq#  mach# arr   start dur   done  wait   19  -22   82  -66   36  -44  -77
+seq#  mach# arr   start dur   done  wait   15  -22   90  -66   30  -44  -77
+seq#  mach# arr   start dur   done  wait    8  -22   95  -66   29  -44  -77
+
+VOTING VOTERS
+
+DONE VOTING VOTERS
+
+
+********** ********** ********** ********** ********** **********
+
+QUEUE: TIME          0    3
+QUEUE: TIME          1    3
+QUEUE: TIME          2    3
+QUEUE: TIME          3    3
+QUEUE: TIME          4    3
+QUEUE: ASSIGNED    4: seq#  mach# arr   start dur   done  wait   10    0    4    4   37   41    0
+QUEUE: TIME          5    2
+QUEUE: TIME          6    2
+QUEUE: TIME          7    2
+QUEUE: TIME          8    2
+QUEUE: TIME          9    2
+QUEUE: TIME         10    2
+QUEUE: ASSIGNED    10: seq#  mach# arr   start dur   done  wait   17    1   10   10   19   29    0
+QUEUE: TIME         11    1
+QUEUE: TIME         12    1
+QUEUE: TIME         13    1
+QUEUE: TIME         14    1
+QUEUE: TIME         15    1
+QUEUE: ASSIGNED    15: seq#  mach# arr   start dur   done  wait   12    2   15   15   35   50    0
+QUEUE: TIME         16    0
+QUEUE: TIME         17    0
+QUEUE: TIME         18    0
+QUEUE: TIME         19    0
+QUEUE: TIME         20    0
+QUEUE: TIME         21    0
+QUEUE: TIME         22    0
+QUEUE: TIME         23    0
+QUEUE: TIME         24    0
+QUEUE: TIME         25    0
+QUEUE: TIME         26    0
+QUEUE: TIME         27    0
+QUEUE: TIME         28    0
+QUEUE: TIME         29    0
+QUEUE: VOTER DONE  29: seq#  mach# arr   start dur   done  wait   17    1   10   10   19   29    0
+QUEUE: ASSIGNED    29: seq#  mach# arr   start dur   done  wait   13    1   17   29   36   65   12
+QUEUE: TIME         30    0
+QUEUE: TIME         31    0
+QUEUE: TIME         32    0
+QUEUE: TIME         33    0
+QUEUE: TIME         34    0
+QUEUE: TIME         35    0
+QUEUE: TIME         36    0
+QUEUE: TIME         37    0
+QUEUE: TIME         38    0
+QUEUE: TIME         39    0
+QUEUE: TIME         40    0
+QUEUE: TIME         41    0
+QUEUE: VOTER DONE  41: seq#  mach# arr   start dur   done  wait   10    0    4    4   37   41    0
+QUEUE: ASSIGNED    41: seq#  mach# arr   start dur   done  wait   16    0   32   41   25   66    9
+QUEUE: TIME         42    0
+QUEUE: TIME         43    0
+QUEUE: TIME         44    0
+QUEUE: TIME         45    0
+QUEUE: TIME         46    0
+QUEUE: TIME         47    0
+QUEUE: TIME         48    0
+QUEUE: TIME         49    0
+QUEUE: TIME         50    0
+QUEUE: VOTER DONE  50: seq#  mach# arr   start dur   done  wait   12    2   15   15   35   50    0
+QUEUE: ASSIGNED    50: seq#  mach# arr   start dur   done  wait    6    2   33   50   28   78   17
+QUEUE: TIME         51    0
+QUEUE: TIME         52    0
+QUEUE: TIME         53    0
+QUEUE: TIME         54    0
+QUEUE: TIME         55    0
+QUEUE: TIME         56    0
+QUEUE: TIME         57    0
+QUEUE: TIME         58    0
+QUEUE: TIME         59    0
+QUEUE: TIME         60    0
+QUEUE: TIME         61    0
+QUEUE: TIME         62    0
+QUEUE: TIME         63    0
+QUEUE: TIME         64    0
+QUEUE: TIME         65    0
+QUEUE: VOTER DONE  65: seq#  mach# arr   start dur   done  wait   13    1   17   29   36   65   12
+QUEUE: ASSIGNED    65: seq#  mach# arr   start dur   done  wait    2    1   34   65   23   88   31
+QUEUE: TIME         66    0
+QUEUE: VOTER DONE  66: seq#  mach# arr   start dur   done  wait   16    0   32   41   25   66    9
+QUEUE: ASSIGNED    66: seq#  mach# arr   start dur   done  wait    4    0   37   66   24   90   29
+QUEUE: TIME         67    0
+QUEUE: TIME         68    0
+QUEUE: TIME         69    0
+QUEUE: TIME         70    0
+QUEUE: TIME         71    0
+QUEUE: TIME         72    0
+QUEUE: TIME         73    0
+QUEUE: TIME         74    0
+QUEUE: TIME         75    0
+QUEUE: TIME         76    0
+QUEUE: TIME         77    0
+QUEUE: TIME         78    0
+QUEUE: VOTER DONE  78: seq#  mach# arr   start dur   done  wait    6    2   33   50   28   78   17
+QUEUE: ASSIGNED    78: seq#  mach# arr   start dur   done  wait   11    2   39   78   29  107   39
+QUEUE: TIME         79    0
+QUEUE: TIME         80    0
+QUEUE: TIME         81    0
+QUEUE: TIME         82    0
+QUEUE: TIME         83    0
+QUEUE: TIME         84    0
+QUEUE: TIME         85    0
+QUEUE: TIME         86    0
+QUEUE: TIME         87    0
+QUEUE: TIME         88    0
+QUEUE: VOTER DONE  88: seq#  mach# arr   start dur   done  wait    2    1   34   65   23   88   31
+QUEUE: ASSIGNED    88: seq#  mach# arr   start dur   done  wait    0    1   40   88   27  115   48
+QUEUE: TIME         89    0
+QUEUE: TIME         90    0
+QUEUE: VOTER DONE  90: seq#  mach# arr   start dur   done  wait    4    0   37   66   24   90   29
+QUEUE: ASSIGNED    90: seq#  mach# arr   start dur   done  wait    5    0   42   90   34  124   48
+QUEUE: TIME         91    0
+QUEUE: TIME         92    0
+QUEUE: TIME         93    0
+QUEUE: TIME         94    0
+QUEUE: TIME         95    0
+QUEUE: TIME         96    0
+QUEUE: TIME         97    0
+QUEUE: TIME         98    0
+QUEUE: TIME         99    0
+QUEUE: TIME        100    0
+QUEUE: TIME        101    0
+QUEUE: TIME        102    0
+QUEUE: TIME        103    0
+QUEUE: TIME        104    0
+QUEUE: TIME        105    0
+QUEUE: TIME        106    0
+QUEUE: TIME        107    0
+QUEUE: VOTER DONE  107: seq#  mach# arr   start dur   done  wait   11    2   39   78   29  107   39
+QUEUE: ASSIGNED    107: seq#  mach# arr   start dur   done  wait    1    2   43  107   29  136   64
+QUEUE: TIME        108    0
+QUEUE: TIME        109    0
+QUEUE: TIME        110    0
+QUEUE: TIME        111    0
+QUEUE: TIME        112    0
+QUEUE: TIME        113    0
+QUEUE: TIME        114    0
+QUEUE: TIME        115    0
+QUEUE: VOTER DONE  115: seq#  mach# arr   start dur   done  wait    0    1   40   88   27  115   48
+QUEUE: ASSIGNED    115: seq#  mach# arr   start dur   done  wait    3    1   47  115   28  143   68
+QUEUE: TIME        116    0
+QUEUE: TIME        117    0
+QUEUE: TIME        118    0
+QUEUE: TIME        119    0
+QUEUE: TIME        120    0
+QUEUE: TIME        121    0
+QUEUE: TIME        122    0
+QUEUE: TIME        123    0
+QUEUE: TIME        124    0
+QUEUE: VOTER DONE  124: seq#  mach# arr   start dur   done  wait    5    0   42   90   34  124   48
+QUEUE: ASSIGNED    124: seq#  mach# arr   start dur   done  wait    7    0   69  124   30  154   55
+QUEUE: TIME        125    0
+QUEUE: TIME        126    0
+QUEUE: TIME        127    0
+QUEUE: TIME        128    0
+QUEUE: TIME        129    0
+QUEUE: TIME        130    0
+QUEUE: TIME        131    0
+QUEUE: TIME        132    0
+QUEUE: TIME        133    0
+QUEUE: TIME        134    0
+QUEUE: TIME        135    0
+QUEUE: TIME        136    0
+QUEUE: VOTER DONE  136: seq#  mach# arr   start dur   done  wait    1    2   43  107   29  136   64
+QUEUE: ASSIGNED    136: seq#  mach# arr   start dur   done  wait   18    2   70  136   30  166   66
+QUEUE: TIME        137    0
+QUEUE: TIME        138    0
+QUEUE: TIME        139    0
+QUEUE: TIME        140    0
+QUEUE: TIME        141    0
+QUEUE: TIME        142    0
+QUEUE: TIME        143    0
+QUEUE: VOTER DONE  143: seq#  mach# arr   start dur   done  wait    3    1   47  115   28  143   68
+QUEUE: ASSIGNED    143: seq#  mach# arr   start dur   done  wait   14    1   73  143   29  172   70
+QUEUE: TIME        144    0
+QUEUE: TIME        145    0
+QUEUE: TIME        146    0
+QUEUE: TIME        147    0
+QUEUE: TIME        148    0
+QUEUE: TIME        149    0
+QUEUE: TIME        150    0
+QUEUE: TIME        151    0
+QUEUE: TIME        152    0
+QUEUE: TIME        153    0
+QUEUE: TIME        154    0
+QUEUE: VOTER DONE  154: seq#  mach# arr   start dur   done  wait    7    0   69  124   30  154   55
+QUEUE: ASSIGNED    154: seq#  mach# arr   start dur   done  wait    9    0   80  154   32  186   74
+QUEUE: TIME        155    0
+QUEUE: TIME        156    0
+QUEUE: TIME        157    0
+QUEUE: TIME        158    0
+QUEUE: TIME        159    0
+QUEUE: TIME        160    0
+QUEUE: TIME        161    0
+QUEUE: TIME        162    0
+QUEUE: TIME        163    0
+QUEUE: TIME        164    0
+QUEUE: TIME        165    0
+QUEUE: TIME        166    0
+QUEUE: VOTER DONE  166: seq#  mach# arr   start dur   done  wait   18    2   70  136   30  166   66
+QUEUE: ASSIGNED    166: seq#  mach# arr   start dur   done  wait   19    2   82  166   36  202   84
+QUEUE: TIME        167    0
+QUEUE: TIME        168    0
+QUEUE: TIME        169    0
+QUEUE: TIME        170    0
+QUEUE: TIME        171    0
+QUEUE: TIME        172    0
+QUEUE: VOTER DONE  172: seq#  mach# arr   start dur   done  wait   14    1   73  143   29  172   70
+QUEUE: ASSIGNED    172: seq#  mach# arr   start dur   done  wait   15    1   90  172   30  202   82
+QUEUE: TIME        173    0
+QUEUE: TIME        174    0
+QUEUE: TIME        175    0
+QUEUE: TIME        176    0
+QUEUE: TIME        177    0
+QUEUE: TIME        178    0
+QUEUE: TIME        179    0
+QUEUE: TIME        180    0
+QUEUE: TIME        181    0
+QUEUE: TIME        182    0
+QUEUE: TIME        183    0
+QUEUE: TIME        184    0
+QUEUE: TIME        185    0
+QUEUE: TIME        186    0
+QUEUE: VOTER DONE  186: seq#  mach# arr   start dur   done  wait    9    0   80  154   32  186   74
+QUEUE: ASSIGNED    186: seq#  mach# arr   start dur   done  wait    8    0   95  186   29  215   91
+QUEUE: TIME        187    0
+QUEUE: TIME        188    0
+QUEUE: TIME        189    0
+QUEUE: TIME        190    0
+QUEUE: TIME        191    0
+QUEUE: TIME        192    0
+QUEUE: TIME        193    0
+QUEUE: TIME        194    0
+QUEUE: TIME        195    0
+QUEUE: TIME        196    0
+QUEUE: TIME        197    0
+QUEUE: TIME        198    0
+QUEUE: TIME        199    0
+QUEUE: TIME        200    0
+QUEUE: TIME        201    0
+QUEUE: TIME        202    0
+QUEUE: VOTER DONE  202: seq#  mach# arr   start dur   done  wait   19    2   82  166   36  202   84
+QUEUE: VOTER DONE  202: seq#  mach# arr   start dur   done  wait   15    1   90  172   30  202   82
+QUEUE: TIME        203    2
+QUEUE: TIME        204    2
+QUEUE: TIME        205    2
+QUEUE: TIME        206    2
+QUEUE: TIME        207    2
+QUEUE: TIME        208    2
+QUEUE: TIME        209    2
+QUEUE: TIME        210    2
+QUEUE: TIME        211    2
+QUEUE: TIME        212    2
+QUEUE: TIME        213    2
+QUEUE: TIME        214    2
+QUEUE: TIME        215    2
+QUEUE: VOTER DONE  215: seq#  mach# arr   start dur   done  wait    8    0   95  186   29  215   91
+QUEUE: leave RunSimulation2
+QUEUE: enter DoStatistics
+QUEUE: enter ComputeMeanAndDev
+QUEUE: leave ComputeMeanAndDev
+QUEUE: leave DoStatistics
+QUEUE: leave RunSimulation

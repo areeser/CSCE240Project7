@@ -1,0 +1,108 @@
+
+MAIN: Random number seed: 2
+MAIN: # Voters: 20
+MAIN: # Time steps: 100
+MAIN: # Machines: 3 to 3
+MAIN: Mean & dev vote times: 30 5
+
+QUEUE: Random number seed: 2
+QUEUE: # Voters: 20
+QUEUE: # Time steps: 100
+QUEUE: # Machines: 3
+QUEUE: Mean & dev vote times: 30 5
+
+QUEUE:      0:      3: ***
+QUEUE:      1:      0: 
+QUEUE:      2:      0: 
+QUEUE:      3:      0: 
+QUEUE:      4:      0: 
+QUEUE:      5:      0: 
+QUEUE:      6:      0: 
+QUEUE:      7:      0: 
+QUEUE:      8:      0: 
+QUEUE:      9:      1: *
+QUEUE:     10:      0: 
+QUEUE:     11:      0: 
+QUEUE:     12:      1: *
+QUEUE:     13:      0: 
+QUEUE:     14:      0: 
+QUEUE:     15:      0: 
+QUEUE:     16:      0: 
+QUEUE:     17:      1: *
+QUEUE:     18:      0: 
+QUEUE:     19:      0: 
+QUEUE:     20:      0: 
+QUEUE:     21:      0: 
+QUEUE:     22:      0: 
+QUEUE:     23:      0: 
+QUEUE:     24:      0: 
+QUEUE:     25:      0: 
+QUEUE:     26:      0: 
+QUEUE:     27:      0: 
+QUEUE:     28:      0: 
+QUEUE:     29:      1: *
+QUEUE:     30:      0: 
+QUEUE:     31:      1: *
+QUEUE:     32:      0: 
+QUEUE:     33:      0: 
+QUEUE:     34:      0: 
+QUEUE:     35:      0: 
+QUEUE:     36:      0: 
+QUEUE:     37:      0: 
+QUEUE:     38:      0: 
+QUEUE:     39:      1: *
+QUEUE:     40:      0: 
+QUEUE:     41:      0: 
+QUEUE:     42:      0: 
+QUEUE:     43:      0: 
+QUEUE:     44:      0: 
+QUEUE:     45:      0: 
+QUEUE:     46:      0: 
+QUEUE:     47:      0: 
+QUEUE:     48:      2: **
+QUEUE:     49:      0: 
+QUEUE:     50:      0: 
+QUEUE:     51:      0: 
+QUEUE:     52:      0: 
+QUEUE:     53:      0: 
+QUEUE:     54:      0: 
+QUEUE:     55:      1: *
+QUEUE:     56:      0: 
+QUEUE:     57:      0: 
+QUEUE:     58:      0: 
+QUEUE:     59:      0: 
+QUEUE:     60:      0: 
+QUEUE:     61:      0: 
+QUEUE:     62:      0: 
+QUEUE:     63:      0: 
+QUEUE:     64:      1: *
+QUEUE:     65:      0: 
+QUEUE:     66:      1: *
+QUEUE:     67:      0: 
+QUEUE:     68:      1: *
+QUEUE:     69:      0: 
+QUEUE:     70:      1: *
+QUEUE:     71:      0: 
+QUEUE:     72:      0: 
+QUEUE:     73:      0: 
+QUEUE:     74:      1: *
+QUEUE:     75:      0: 
+QUEUE:     76:      0: 
+QUEUE:     77:      0: 
+QUEUE:     78:      0: 
+QUEUE:     79:      0: 
+QUEUE:     80:      0: 
+QUEUE:     81:      0: 
+QUEUE:     82:      1: *
+QUEUE:     83:      0: 
+QUEUE:     84:      1: *
+QUEUE:     85:      0: 
+QUEUE:     86:      0: 
+QUEUE:     87:      0: 
+QUEUE:     88:      0: 
+QUEUE:     89:      0: 
+QUEUE:     90:      0: 
+QUEUE:     91:      1: *
+QUEUE: 
+
+QUEUE: mean and deviation of wait time are 44.35, 29.7023
