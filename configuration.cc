@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-sdf;oiajsdf ;oijasdf ija
-=======
 #include "configuration.h"
 /****************************************************************
  * Implementation for the 'Configuration' class.
@@ -133,4 +130,3 @@ string Configuration::ToString()
   s += "\n";
   return s;
 }
->>>>>>> refs/remotes/origin/master
