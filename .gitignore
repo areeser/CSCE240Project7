@@ -1,3 +1,16 @@
 *.o
 .#*
+
+# Let's not commit binary files to the repository.  We'll start seeing one-million
+# line diffs, which aren't nice.  This will stop the zip at least from being
+# added; if you unzip it in `.' then at least don't add anything binary.
+
 hw6testdirectory.zip
+
+# I use CTags and stuff to navigate code --- this shouldn't be global, but
+# whatever.
+
+TAGS
+GPATH
+GRTAGS
+GTAGS
