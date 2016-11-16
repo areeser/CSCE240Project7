@@ -20,9 +20,9 @@ public:
 /****************************************************************
  * Constructors and destructors for the class. 
 **/
- OneVoter();
+ OneVoter() = default;
  OneVoter(int sequence, int arrival_seconds, int duration_seconds);
- virtual ~OneVoter();
+ virtual ~OneVoter() = default;
 
 /****************************************************************
  * Accessors and Mutators.

@@ -10,11 +10,6 @@
 static const string kTag = "ONEVOTER: ";
 
 /****************************************************************
-* Constructor.
-**/
-OneVoter::OneVoter() {
-}
-/****************************************************************
 **/
 OneVoter::OneVoter(int sequence, int arrival_seconds,
                    int duration_seconds) {
@@ -23,11 +18,6 @@ OneVoter::OneVoter(int sequence, int arrival_seconds,
   time_start_voting_seconds_ = 0;
   time_vote_duration_seconds_ = duration_seconds;
   which_station_ = -1;
-}
-
-/****************************************************************
-**/
-OneVoter::~OneVoter() {
 }
 
 /****************************************************************

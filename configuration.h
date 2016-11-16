@@ -30,8 +30,8 @@ class Configuration
   /****************************************************************
    * Constructors and destructors for the class.
    **/
-  Configuration();
-  virtual ~Configuration();
+  Configuration() = default;
+  virtual ~Configuration() = default;
 
   /****************************************************************
    * Accessors and Mutators.

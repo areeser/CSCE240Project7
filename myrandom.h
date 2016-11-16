@@ -23,7 +23,7 @@ class MyRandom {
 public:
  MyRandom();
  MyRandom(unsigned seed);
- virtual ~MyRandom();
+ virtual ~MyRandom() = default;
 
  int RandomExponentialInt(double mean);
  double RandomNormal(double mean, double dev);

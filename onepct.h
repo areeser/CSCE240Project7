@@ -33,9 +33,9 @@ public:
 /****************************************************************
  * Constructors and destructors for the class. 
 **/
- OnePct();
+ OnePct() = default;
  OnePct(Scanner& infile);
- virtual ~OnePct();
+ virtual ~OnePct() = default;
 
 /****************************************************************
  * Accessors and Mutators.

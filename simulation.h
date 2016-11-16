@@ -26,8 +26,8 @@ public:
 /****************************************************************
  * Constructors and destructors for the class. 
 **/
-  Simulation();
-  virtual ~Simulation();
+  Simulation() = default;
+  virtual ~Simulation() = default;
 
 /****************************************************************
  * General functions.
