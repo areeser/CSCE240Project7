@@ -1,5 +1,6 @@
 *.o
 .#*
+\#*\#
 
 # Let's not commit binary files to the repository.  We'll start seeing one-million
 # line diffs, which aren't nice.  This will stop the zip at least from being
