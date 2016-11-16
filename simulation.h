@@ -4,7 +4,7 @@
  * Author/copyright:  Duncan Buell
  * Date: 19 July 2016
  *
-**/
+ **/
 
 #ifndef SIMULATION_H
 #define SIMULATION_H
@@ -23,15 +23,15 @@ using namespace std;
 class Simulation
 {
 public:
-/****************************************************************
- * Constructors and destructors for the class. 
-**/
+  /****************************************************************
+   * Constructors and destructors for the class.
+   **/
   Simulation() = default;
   virtual ~Simulation() = default;
 
-/****************************************************************
- * General functions.
-**/
+  /****************************************************************
+   * General functions.
+   **/
   void ReadPrecincts(Scanner& infile);
   void RunSimulation(const Configuration& config,
                      MyRandom& random, ofstream& out_stream);
@@ -39,14 +39,14 @@ public:
   string ToStringPcts();
 
 private:
-/****************************************************************
- * Variables.
-**/
+  /****************************************************************
+   * Variables.
+   **/
   map<int, OnePct> pcts_;
 
-/****************************************************************
- * Private functions.
-**/
+  /****************************************************************
+   * Private functions.
+   **/
 };
 
 #endif // SIMULATION_H
