@@ -6,6 +6,7 @@
  * Date: 6 October 2016
  **/
 
+/* File tag for output purposes. (Consider using __FILE__?) */
 static const string kTag = "CONFIG: ";
 
 /****************************************************************
@@ -24,6 +25,8 @@ Configuration::~Configuration() {
  * Accessors and mutators.
  **/
 /****************************************************************
+ * Return the maximum accessible subscript (_not_ the size) of
+ * the service times.
  **/
 int Configuration::GetMaxServiceSubscript() const {
   return static_cast<int>(actual_service_times_.size()) - 1;
@@ -56,31 +59,57 @@ int Configuration::GetMaxServiceSubscript() const {
   * them to the vector arrival_fractions_.
   *
   * TODO service_times_file and actual_service_times_
+  * TODO are we supposed to error check the input? -- mbozzi
   **/
 void Configuration::ReadConfiguration(Scanner& instream) {
-  /*
-
-   */
   string line;
   ScanLine scanline;
 
+  /* Each field read in here corresponds to the format of the configuration
+     file, which is text-oriented.  See ./xconfig100zero.txt for an example
+     configuration. */
   line = instream.NextLine();
   scanline.OpenString(line);
+
+  /* Random number seed. */
   seed_ = scanline.NextInt();
-  election_day_length_hours_ = scanline.NextInt();
+  /* How long is one election day? */
+  election_day_length_hours_   = scanline.NextInt();
   election_day_length_seconds_ = election_day_length_hours_ * 3600;
-  time_to_vote_mean_seconds_ = scanline.NextInt();
-  min_expected_to_simulate_ = scanline.NextInt();
+
+  /* Average (mean) time for one voter to vote */
+  time_to_vote_mean_seconds_   = scanline.NextInt();
+
+  min_expected_to_simulate_    = scanline.NextInt();
   max_expected_to_simulate_ = scanline.NextInt();
   wait_time_minutes_that_is_too_long_ = scanline.NextInt();
+
+  /* run N simulations. */
   number_of_iterations_ = scanline.NextInt();
 
+  /* Pull the second line from the configuration file. */
   line = instream.NextLine();
   scanline.OpenString(line);
-  arrival_zero_ = scanline.NextDouble();
-  for (int sub = 0; sub < election_day_length_hours_; ++sub) {
-    double input = scanline.NextDouble();
-    arrival_fractions_.push_back(input);
+
+  {
+    /* All of the data read in this block should sum to ~100.0
+       Careful w/ floating-point precision issues - see the single-line
+       comments for an example way to test for approximate accuracy. */
+    // double sum = 0.0;
+    /* total percentage of voters who were waiting when the polls opened. */
+    arrival_zero_ = scanline.NextDouble();
+    // sum += arrival_zero_;
+    /* Percentage of voters who arrive each hour, out of all voters. */
+    for (int sub = 0; sub < election_day_length_hours_; ++sub) {
+      double input = scanline.NextDouble();
+      // sum += input;
+      arrival_fractions_.push_back(input);
+    }
+
+    // constexpr auto epsilon = 1.0e-7; /* some relatively small value */
+    /* Does everything sum to about 100%?  Use this hack for floating-point equality.
+       (There's more correct ways to do this, but they are very complex). */
+    // assert(std::abs (sum - 100.0) <= epsilon);
   }
 
   Scanner service_times_file;
