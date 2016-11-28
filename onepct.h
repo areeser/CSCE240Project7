@@ -2,7 +2,31 @@
  * Header for the 'OnePct' class
  *
  * Author/copyright:  Duncan Buell
- * Date: 6 October 2016
+ * Modified by: Joe Regalbuto
+ * Date: 28 November 2016
+ *
+ * This is a header file for one voter precint in a simulation.
+ * An instance of a precinct contains member variables to detail
+ * general precinct information and expected voter turnouts. 
+ * A precinct also contains four private multimaps that track 
+ * voters in line, voters currently voting, voters who have 
+ * voted, and other data structures related to the numbers of 
+ * available and total voting stations. 
+ * 
+ * General functions include a ToStringVoterMap() to format
+ * output for various multimaps. The ReadData() function 
+ * reads data for the setup of a precint and relating to the
+ * accompanying simulation. ReadSimulation() allows this 
+ * precinct to be included in a simulation based on the seed
+ * that has been randomly generated. 
+ *
+ * Other member varibles are used in computing this precint's
+ * average wait time for each voter and the standard deviation
+ * of waiting times. Also contains dummy constant variables. 
+ * 
+ * A 'precinct' also contains private functions to computer the 
+ * mean and standard deviation, create voters within the precint,
+ * and compute the other statistics, stored in member variables.
  *
 **/
 
@@ -38,7 +62,8 @@ public:
  virtual ~OnePct() = default;
 
 /****************************************************************
- * Accessors and Mutators.
+ * Accessors to return the expected number of voters for a
+ * precinct and a precint's number.
 **/
   int GetExpectedVoters() const;
   int GetPctNumber() const;
@@ -65,6 +90,8 @@ private:
   double wait_mean_seconds_;
   set<int> stations_to_histo_;
   vector<int> free_stations_;
+ 
+  //multimaps used to dynamically store voters
   multimap<int, OneVoter> voters_backup_;
   multimap<int, OneVoter> voters_done_voting_;
   multimap<int, OneVoter> voters_pending_;
