@@ -28,6 +28,9 @@ int Configuration::GetMaxServiceSubscript() const {
 /****************************************************************
   * Function: ReadConfiguration
   * Takes in a Scanner
+  *
+  * Written by Alexander Reeser {
+  *
   * The function reads a line which is opened with scanline.
   * The first int in the line is the seed. The second int is the
   * number of hours the voting stations are open. From this it
@@ -46,7 +49,11 @@ int Configuration::GetMaxServiceSubscript() const {
   * percentage of people who voted during that hour and pushing
   * them to the vector arrival_fractions_.
   *
-  * TODO service_times_file and actual_service_times_
+  * Next, the file dataallsorted is opened with the Scanner
+  * service_times_file. All the integers in the file are then
+  * pushed onto the actual_service_times_ vector. These are the
+  * times it takes costomers to vote.
+  * } endAlexander
   * TODO are we supposed to error check the input? -- mbozzi
   **/
 void Configuration::ReadConfiguration(Scanner& instream) {
@@ -109,6 +116,9 @@ void Configuration::ReadConfiguration(Scanner& instream) {
 }
 
 /****************************************************************
+ * Function: ToString
+ * Returns: the string s
+ * 
  **/
 string Configuration::ToString()
 {
