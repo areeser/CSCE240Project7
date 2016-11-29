@@ -55,11 +55,12 @@ int main(int argc, char *argv[])
   config_stream.OpenFile(config_filename);
   config.ReadConfiguration(config_stream);
   config_stream.Close();
-
+  //Takes the config, converts it to a string, then sends it to the log file
   outstring = kTag + config.ToString() + "\n";
   out_stream << outstring << endl;
   Utils::log_stream << outstring << endl;
 
+  //Calls the parameterized constructor of MyRandom
   random = MyRandom(config.seed_);
 
   ////////////////////////////////////////////////////////////////////

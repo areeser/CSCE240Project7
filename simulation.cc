@@ -16,6 +16,14 @@ static const string kTag = "SIM: ";
 /****************************************************************
  * General functions.
  **/
+/****************************************************************
+ * Function: ReadPrecincts
+ * Written by Alexander Reeser {
+ * While the infile has more data, the function creates a new pct,
+ * calls ReadData with the new pct, then stores that pct in the map
+ * of pcts_. 
+ * } endReeser
+ **/
 void Simulation::ReadPrecincts(Scanner& infile) {
   while (infile.HasNext()) {
     OnePct new_pct;
@@ -25,6 +33,17 @@ void Simulation::ReadPrecincts(Scanner& infile) {
 } // void Simulation::ReadPrecincts(Scanner& infile) {
 
 /****************************************************************
+ * Function RunSimulation
+ * Written by Alexander Reeser {
+ * The simulation iterates through the pcts_ map, setting the 
+ * OnePct named pct to the OnePct stored in the current map location.
+ * If the number of expected voters in the pct is less than the
+ * min_expected_to_simulate_ or greater than the max_expected_to_simulate_
+ * continue is called. Otherwise, the pct is converted to a string 
+ * and sent to the Output. The pct count is then increased by one.
+ * After the loop ends, the number of pcts in the simulation is
+ * sent to the Output.
+ * } endReeser
  **/
 void Simulation::RunSimulation(const Configuration &config, MyRandom &random,
                                ofstream &out_stream) {
@@ -60,7 +79,9 @@ void Simulation::RunSimulation(const Configuration &config, MyRandom &random,
 } // void Simulation::RunSimulation()
 
 /****************************************************************
- * Usual 'ToString'.
+ * Function ToString
+ * Returns: a string containing all the pct information in the 
+ *          pcts_ map.
  **/
 string Simulation::ToString()
 {
