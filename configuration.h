@@ -7,7 +7,7 @@
  * and produces different output. 
  *
  * Author/copyright:  Duncan Buell
- * Modified by: Project 7 Group
+ * Modified by: Group 6
  * Date: 1 December 2016
  *
  **/
