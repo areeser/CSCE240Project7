@@ -3,7 +3,8 @@
  * Implementation for the 'Configuration' class.
  *
  * Author/copyright:  Duncan Buell. All rights reserved.
- * Date: 6 October 2016
+ * Comments added by Alexander Reeser
+ * Date: 1 December 2016
  **/
 
 /* File tag for output purposes. (Consider using __FILE__?) */
@@ -38,7 +39,7 @@ int Configuration::GetMaxServiceSubscript() const {
   * third int in the line is the average time someone takes to
   * vote. The fourth int is the minimum number of possible voters
   * in the simulation and the fifth is the maximum number of
-  * voters in the simulation. The sixth int is the number of
+  * voters in the simulation. The sixth int is the number of minutes
   * someone can wait at the polls before the wait time is too long.
   * Seventh and final int is the number of times the simulation
   * will run.
@@ -52,7 +53,7 @@ int Configuration::GetMaxServiceSubscript() const {
   * Next, the file dataallsorted is opened with the Scanner
   * service_times_file. All the integers in the file are then
   * pushed onto the actual_service_times_ vector. These are the
-  * times it takes costomers to vote.
+  * times it takes voters to vote.
   * } endAlexander
   * TODO are we supposed to error check the input? -- mbozzi
   **/
@@ -117,7 +118,7 @@ void Configuration::ReadConfiguration(Scanner& instream) {
 
 /****************************************************************
  * Function: ToString
- * Returns: the string s
+ * Returns: the string s 
  * 
  **/
 string Configuration::ToString()
