@@ -24,18 +24,29 @@ OneVoter::OneVoter(int sequence, int arrival_seconds,
 * Accessors and mutators.
 **/
 /****************************************************************
+ * Function GetTimeArrival
+ *
+ * Returns the time (in seconds) at which this voter arrived at a
+ * service station.
 **/
 int OneVoter::GetTimeArrival() const {
   return time_arrival_seconds_;
 }
 
 /****************************************************************
+ * Function GetTimeWaiting
+ *
+ * Returns the duration (in seconds) for which this voter waited
+ * before being served at a service station.
 **/
 int OneVoter::GetTimeWaiting() const {
   return time_waiting_seconds_;
 }
 
 /****************************************************************
+ * Function GetStationNumber
+ *
+ * Returns the station number this voter was serviced at.
 **/
 int OneVoter::GetStationNumber() const {
   return which_station_;
@@ -46,10 +57,16 @@ int OneVoter::GetStationNumber() const {
 **/
 
 /****************************************************************
+ * Function AssignStation
+ *
+ * Begin serving this voter at a particular station.
+ * Accepts a station identifier,
+ * Accepts a time at which this
 **/
 void OneVoter::AssignStation(int station_number,
                              int start_time_seconds) {
   which_station_ = station_number;
+
   time_start_voting_seconds_ = start_time_seconds;
   time_done_voting_seconds_ = time_start_voting_seconds_
                             + time_vote_duration_seconds_;
@@ -81,6 +98,7 @@ string OneVoter::GetTOD(int time_in_seconds) const {
 }
 
 /****************************************************************
+ * Function ConvertTime()
 **/
 string OneVoter::ConvertTime(int time_in_seconds) const {
   int hours = 0;
