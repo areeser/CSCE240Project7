@@ -3,6 +3,7 @@
 * Implementation for the 'OnePct' class.
 *
 * Author/copyright:  Duncan Buell. All rights reserved.
+* Modified by: Group 7
 * Date: 21 May 2013
 *
 **/
@@ -39,7 +40,14 @@ int OnePct::GetPctNumber() const {
 **/
 
 /******************************************************************************
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< HEAD
 * 
+================================
+* Computes statistics for a precint. Sums each voters wait time, finds the
+* average based on expected turnout. Then computes the standard deviation
+* for waiting times based on each voter wait time's distance from the average
+* waiting time.
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> origin/master
 **/
 void OnePct::ComputeMeanAndDev() {
   int sum_of_wait_times_seconds = 0;
@@ -50,10 +58,14 @@ void OnePct::ComputeMeanAndDev() {
        iter_multimap != voters_done_voting_.end(); ++iter_multimap) {
     OneVoter voter = iter_multimap->second;
     sum_of_wait_times_seconds += voter.GetTimeWaiting();
-  }
+  } 
+  //loop traverses map of completed voters and finds 
+  //the sum of all waiting times
+  
   wait_mean_seconds_ = static_cast<double>(sum_of_wait_times_seconds)/
   static_cast<double>(pct_expected_voters_);
-
+  //average waiting time is calculated
+  
   sum_of_adjusted_times_seconds = 0.0;
   for (iter_multimap = voters_done_voting_.begin();
        iter_multimap != voters_done_voting_.end(); ++iter_multimap) {
@@ -62,9 +74,14 @@ void OnePct::ComputeMeanAndDev() {
                       - wait_mean_seconds_;
 
     sum_of_adjusted_times_seconds += (this_addin) * (this_addin);
-  }
+  } 
+  //map of completed voters is traversed again
+  //each voter's waiting time is compared to the average and
+  //the sum of those differences' squares is calculated
+  
   wait_dev_seconds_ = sqrt(sum_of_adjusted_times_seconds /
   static_cast<double>(pct_expected_voters_));
+  //computes standard deviation of waiting times for this precinct
 }
 
 /****************************************************************
@@ -76,6 +93,7 @@ void OnePct::CreateVoters(const Configuration& config, MyRandom& random,
   int sequence = 0;
   double percent = 0.0;
   string outstring = "XX";
+  //prepares for creation of new voter
 
   voters_backup_.clear();
   sequence = 0;
@@ -174,6 +192,9 @@ int OnePct::DoStatistics(int iteration, const Configuration& config,
 }
 
 /****************************************************************
+* Reads input and assigns values to precint variables. Also takes
+* the last three integers and inserts them into a structure for 
+* use later in statistical computations. 
 **/
 void OnePct::ReadData(Scanner& infile) {
   if (infile.HasNext()) {
