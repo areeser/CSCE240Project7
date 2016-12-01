@@ -1,6 +1,5 @@
 /*     THIS FILE SHOULD NOT BE INCLUDED AS PART OF A RELEASE OR SUBMISSION.
        IF USED, IT WILL CAUSE PROBLEMS WHEN THE NEEDED CODE IS AVAILABLE.     */
-/* ...and yet, it's in the master branch :D */
 
 /* -- What does it do?
  * Allows this program to compile and run in order to help us understand it.
