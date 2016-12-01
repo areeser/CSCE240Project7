@@ -3,7 +3,7 @@
  *
  * Each configuration has a unique, random seed to represent
  * the different voter simulation. Each different configuration
- * for a simulation set the member variables to differnt value
+ * for a simulation sets the member variables to different value
  * and produces different output. 
  *
  * Author/copyright:  Duncan Buell
@@ -40,10 +40,7 @@ class Configuration
   virtual ~Configuration() = default;
 
   /****************************************************************
-   * Accessors and Mutators.
-   **/
-  /****************************************************************
-   * public variables
+   * public variables set to dummy values at the start
    **/
   int seed_ = kDefaultSeed;
   int election_day_length_hours_ = kDummyConfigInt;
@@ -58,7 +55,9 @@ class Configuration
   vector<double> arrival_fractions_;
 
   /****************************************************************
-   * General functions.
+   * General functions. ReadConfiguration() determines which
+   * permutation of the simulation will be run. Accessor to return 
+   * the maximum accessible number of service times. 
    **/
 
   int GetMaxServiceSubscript() const;
