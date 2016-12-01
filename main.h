@@ -2,7 +2,7 @@
  * Generic header for 'main' class
  *
  * Author/copyright:  Duncan Buell
- * Modified by: Group 7
+ * Modified by: Group 6
  * Date: 1 December 2016
  *
 **/
