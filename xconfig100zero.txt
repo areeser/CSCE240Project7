@@ -1,30 +1,29 @@
 35 13  105 50 5000 30 3
 0.0 10.0 10.0 10.0  5.0  5.0  5.0 10.0 10.0  5.0  5.0  5.0 10.0 10.0
 
- 0  0.0
- 6 10.0
- 7 10.0
- 8 10.0
- 9  5.0
-10  5.0
-11  5.0
-12 10.0
- 1 10.0
- 2  5.0
- 3  5.0
- 4  5.0
- 5 10.0
- 6 10.0
+-------
 
-LINE ONE
-RN_seed
-number of hours in election day
-time to vote mean used for estimating min number of stations
-minimum number of voters per pct for this simulation
-maximum number of voters per pct for this simulation
-waiting time (minutes) considered "too long"
-number of iterations to perform
+Format documentation:
 
-LINE TWO
-percent at time zero (one number)
-pct arrival percentages per hour (13 numbers)
+The first line has seven numeric fields, all of which are whitespace-delimited.
+Field 1: Integer.  Sets the random-number generator's seed.  Keep this consistent
+         for consistent output.
+Field 2: Positive integer.  Sets the number of hours in election day.
+Field 3: Positive integer.  Average (mean) time-to-vote for an individual voter.  Used to
+         estimate the number of stations.
+Field 4: Positive integer.  Minimum number of voters allowed per precinct.
+Field 5: Positive integer.  Maximum number of voters allowed per precinct.
+Field 6: Positive integer.  Maximum acceptable waiting time.
+Field 7: Nonnegative integer.  Number of simulations to run.
+
+The second line contains 1 + N real-number fields where N is the number of hours
+in election day.  The very first field on the second line indicates the
+percentage of voters who are present when the polls open.  The next N fields
+represent the percentage of voters who arrive at hour N of the election day.
+
+All of the fields on line 2 should sum to 100%.
+
+Given below is an example configuration.
+
+35 13  105 50 5000 30 3
+0.0 10.0 10.0 10.0  5.0  5.0  5.0 10.0 10.0  5.0  5.0  5.0 10.0 10.0
