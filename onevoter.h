@@ -69,7 +69,7 @@ private:
  //sets member variable values
 
 /****************************************************************
- * General private functions to convert voter times from seconds
+ * Private functions to convert voter times from seconds
  * into a readable format for the user as they will be in 1000s
  * of seconds. These are used in the ToString().
 **/
