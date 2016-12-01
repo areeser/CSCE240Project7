@@ -6,7 +6,7 @@
  * station, precinct details). 
  *
  * Author/copyright:  Duncan Buell
- * Modified by: Group 7
+ * Modified by: Project 7 Group
  * Date: 1 December 2016
  *
  **/
