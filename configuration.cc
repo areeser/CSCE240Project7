@@ -3,7 +3,15 @@
  * Implementation for the 'Configuration' class.
  *
  * Author/copyright:  Duncan Buell. All rights reserved.
- * Date: 6 October 2016
+ * Modified by: Group 7 
+ * Date: 1 December 2016
+ *
+ * This configuration sets up the voter simulation and passes a
+ * scanner. ReadConfiguration() reads the input data and assigns 
+ * the values for election day length, number of iterations, and 
+ * the time it took to vote. The actual service times are then
+ * pushed back onto the vector actual_service_times_.
+ *
  **/
 
 /* File tag for output purposes. (Consider using __FILE__?) */
@@ -117,7 +125,7 @@ void Configuration::ReadConfiguration(Scanner& instream) {
 
 /****************************************************************
  * Function: ToString
- * Returns: the string s
+ * Returns: the string s and formats it nicely for user
  * 
  **/
 string Configuration::ToString()
