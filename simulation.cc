@@ -2,7 +2,15 @@
 /****************************************************************
  * Implementation for the 'Simulation' class.
  *
+ * This voter simulation created voters for a number of voter
+ * precincts on a simulated election day. This class contains
+ * ReadPrecincts() to store all precincts in the pcts_ map.
+ * Also contains RunSimulation() which goes through each precint
+ * to store voter data and compute statistics for output. 
+ * ToString() to format and output data for all precincts. 
+ *
  * Author/copyright:  Duncan Buell
+ * Modified by: Group 7 
  * Date: 19 July 2016
  *
  **/

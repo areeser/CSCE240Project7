@@ -2,7 +2,7 @@
  * Header for the 'OnePct' class
  *
  * Author/copyright:  Duncan Buell
- * Modified by: Joe Regalbuto
+ * Modified by: Group 7
  * Date: 28 November 2016
  *
  * This is a header file for one voter precinct in a simulation.
@@ -76,6 +76,7 @@ public:
 
   string ToString();
   string ToStringVoterMap(string label, multimap<int, OneVoter> themap);
+  //formats output for various maps
 
 private:
   int    pct_expected_voters_ = kDummyInt;
@@ -98,7 +99,9 @@ private:
   multimap<int, OneVoter> voters_voting_;
 
 /****************************************************************
- * General private functions.
+ * General private functions. Used to create voters within a 
+ * precinct and to compute the mean waiting time and the standard
+ * deviation among waiting times for a precinct. 
 **/
   void CreateVoters(const Configuration& config, MyRandom& random,
                     ofstream& out_stream);
