@@ -2,20 +2,20 @@
  * Header for the 'OnePct' class
  *
  * Author/copyright:  Duncan Buell
- * Modified by: Joe Regalbuto
+ * Modified by: Group 7
  * Date: 28 November 2016
  *
  * This is a header file for one voter precinct in a simulation.
- * An instance of a precinct contains member variables to detail
- * general precinct information and expected voter turnouts.
- * A precinct also contains four private multi-maps that track
- * voters in line, voters currently voting, voters who have
- * voted, and other data structures related to the numbers of
- * available and total voting stations.
+ * An instance of a voter precinct contains member variables 
+ * to detail general precinct information and expected voter 
+ * turnouts. A precinct also contains four private multi-maps 
+ * that track voters in line, voters currently voting, voters 
+ * who have voted, and other data structures related to the 
+ * numbers of available and total voting stations.
  *
- * General functions include a ToStringVoterMap() to format
- * output for various multi-maps. The ReadData() function
- * reads data for the setup of a precinct and relating to the
+ * General functions include ToStringVoterMap() to format
+ * output for various multi-maps. The ReadData()
+ * reads input for the setup of a precinct and relating to the
  * accompanying simulation. ReadSimulation() allows this
  * precinct to be included in a simulation based on the seed
  * that has been randomly generated.
