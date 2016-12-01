@@ -246,6 +246,10 @@ int OnePct::DoStatistics(int iteration, const Configuration& config,
 }
 
 /****************************************************************
+ * Function ReadData
+ * Written by Alexander Reeser {
+ * The function takes in an infile and reads the precinct data from it  
+ * }
 **/
 void OnePct::ReadData(Scanner& infile) {
   if (infile.HasNext()) {
@@ -278,7 +282,17 @@ void OnePct::ReadData(Scanner& infile) {
  * then dividing by the amount of time the polls are open. This
  * number must be at least one, if it is not, it is set to one.
  * The max_station_count is the min_station_count plus the 
- * number of hours the polls are open. 
+ * number of hours the polls are open. The simulation runs
+ * once for each station from min_station_count to
+ * max_station_count inclusively or until it achieves a 
+ * maximum wait time that is less than number_too_long.
+ * An inner loop runs the simulation for a number of times
+ * equal to number_of_iterations_ from the config class.
+ * This loop creates voters, then calls RunSimulationPct2.
+ * It then uses the data from RunSimulationPct2 to call 
+ * DoStatistics which returns the maximum wait time. This 
+ * is used to determine if that time was too long. The data
+ * for the simulation is then sent to the Output.
  * } endReeser 
 **/
 void OnePct::RunSimulationPct(const Configuration& config,
@@ -293,7 +307,9 @@ void OnePct::RunSimulationPct(const Configuration& config,
   int max_station_count = min_station_count + config.election_day_length_hours_;
 
   bool done_with_this_count = false;
+  
   //The rest of the function is contained in this for loop
+  //Runs once for each station count
   for (int stations_count = min_station_count;
            stations_count <= max_station_count; ++stations_count) {
 
@@ -370,22 +386,36 @@ void OnePct::RunSimulationPct(const Configuration& config,
 } //void RunSimulationPct
 
 /****************************************************************
-*
+* Function RunSimulationPct2
+* Written by Alexander Reeser {
+* This function iterates through each second the polls are open
+* and checks for arrivals and voters who are finished voting.
+* If a voter is finished voting that voter is moved to the 
+* voters_done_voting_. If there is an open station and 
+* voters_pending_ is not empty, it takes the next voter
+* in the voters_pending_ map and moves it to the voters_voting_  
+* map. This continues on a second by second basis until there are
+* no more voters voting or waiting to vote.
+* } endReeser
 **/
 void OnePct::RunSimulationPct2(int stations_count) {
 
+  //clears free_stations_ from any previous simulations
   free_stations_.clear();
+  
+  //pushes back once for every stations_count
   for (int i = 0; i < stations_count; ++i) {
     free_stations_.push_back(i);
   }
-
+  
   voters_voting_.clear();
   voters_done_voting_.clear();
 
   int second = 0;
   bool done = false;
   while (!done) {
-
+    //Checks for voters who are done voting and adds them to the 
+    //voters_done_voting_ map. 
     for (auto iter = voters_voting_.begin(); iter != voters_voting_.end(); ++iter) {
       if (second == iter->first) {
         OneVoter one_voter = iter->second;
@@ -395,13 +425,14 @@ void OnePct::RunSimulationPct2(int stations_count) {
         voters_done_voting_.insert(std::pair<int, OneVoter>(second, one_voter));
       }
     }
+    //erases all the voters who just finished voting
     voters_voting_.erase(second);
 
     vector<map<int, OneVoter>::iterator > voters_pending_to_erase_by_iterator;
       for (auto iter = voters_pending_.begin(); iter != voters_pending_.end(); ++iter) {
         if (second >= iter->first) {       // if they have already arrived
           if (free_stations_.size() > 0) { // and there are free stations
-            OneVoter next_voter = iter->second;
+            OneVoter next_voter = iter->second; //gets the next voter
             if (next_voter.GetTimeArrival() <= second) {
               int which_station = free_stations_.at(0);
               free_stations_.erase(free_stations_.begin());
@@ -424,7 +455,7 @@ Utils::log_stream << kTag << "PENDING, VOTING, DONE    "
             } // if (next_voter.GetTimeArrival() <= second) {
           } // if (free_stations_.size() > 0) {
         }
-        else { // if (second == iter->first) {
+        else { // if (second >= iter->first) {
           break; // we have walked in time past current time to arrivals in the future
         }
       } // for (auto iter = voters_pending_.begin(); iter != voters_pending_.end(); ++iter) {
@@ -436,6 +467,8 @@ Utils::log_stream << kTag << "PENDING, VOTING, DONE    "
       ++second;
 //    if (second > 500) break;
       done = true;
+      
+      //End condition there are no pending or voting voters
       if ((voters_pending_.size() > 0) || (voters_voting_.size() > 0)) {
         done = false;
       }
@@ -444,6 +477,11 @@ Utils::log_stream << kTag << "PENDING, VOTING, DONE    "
   } // void Simulation::RunSimulationPct2()
 
 /****************************************************************
+ * Function ToString
+ * Returns a string containing the pct_number_, pct_name_, pct_turnout_,
+ *   pct_num_voters_, pct_expected_voters_, pct_expected_per_hour_,
+ *   pct_minority_, and pct_minority_
+ *   It also creates a histogram for the precinct.
 **/
   string OnePct::ToString() {
   string s = "";
@@ -468,6 +506,8 @@ Utils::log_stream << kTag << "PENDING, VOTING, DONE    "
 } // string OnePct::ToString()
 
 /****************************************************************
+ * Function ToStringVoterMap
+ * Returns a string containing all the voter information 
 **/
 string OnePct::ToStringVoterMap(string label,
                multimap<int, OneVoter> themap) {
