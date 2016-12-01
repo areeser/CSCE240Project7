@@ -10,12 +10,14 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+//General Utilities
 #include "../Utilities/utils.h"
 #include "../Utilities/scanner.h"
 #include "../Utilities/scanline.h"
 
 using namespace std;
 
+//Other classes used from main.cc
 #include "configuration.h"
 #include "simulation.h"
 #include "myrandom.h"

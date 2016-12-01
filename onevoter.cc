@@ -168,6 +168,7 @@ string OneVoter::ConvertTime(int time_in_seconds) const {
 } // string OneVoter::ConvertTime(int time_in_seconds) const
 
 /****************************************************************
+ * Function ToString
  * Create a string representation of this voter.
 **/
 string OneVoter::ToString() {
