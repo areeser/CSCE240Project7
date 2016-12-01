@@ -3,15 +3,18 @@
 * Implementation for the 'OnePct' class.
 *
 * Author/copyright:  Duncan Buell. All rights reserved.
-* Date: 21 May 2013
+* Commented by Alexander Reeser
+* Date: 1 December 2016
 *
 **/
 
 static const string kTag = "OnePct: ";
 
 /****************************************************************
-* Constructor.
+ * Constructor.
+ * Creates an instance of OnePct by calling ReadData on the infile 
 **/
+
 OnePct::OnePct(Scanner& infile) {
   this->ReadData(infile);
 }
@@ -21,12 +24,16 @@ OnePct::OnePct(Scanner& infile) {
 **/
 
 /****************************************************************
+ * Function GetExpectedVoters
+ * Returns the number of voters expected to vote in the precinct
 **/
 int OnePct::GetExpectedVoters() const {
   return pct_expected_voters_;
 }
 
 /****************************************************************
+ * Function GetPctNumber
+ * Returns the number of the precinct
 **/
 int OnePct::GetPctNumber() const {
   return pct_number_;
@@ -35,13 +42,35 @@ int OnePct::GetPctNumber() const {
 /****************************************************************
 * General functions.
 **/
-/******************************************************************************
+
+/****************************************************************
+ * Function ComputeMeanAndDev
+ * Written by Alexander Reeser {
+ * This function is used to compute the average wait time of voters
+ * in seconds and the standard deviation of voter wait times in 
+ * seconds. First it computes the average wait time by summing the 
+ * wait times of all the voters in the precinct then dividing that 
+ * number by the number of expected voters in the precinct.
+ * The standard deviation of wait times in seconds is then computed
+ * by iterating through each of the voters in the precinct
+ * then computing the addin for each one by subtracting the 
+ * mean wait time in seconds from the current voter's wait time.
+ * This number is then squared and added to sum_of_adjusted_times_seconds.
+ * This is done for every voter in the precinct. Finally, the 
+ * standard deviation of wait times is computed by square 
+ * rooting the division of the sum_of_adjusted_times_seconds 
+ * by the expected voter turnout in the precinct.
+ * } endReeser
 **/
 void OnePct::ComputeMeanAndDev() {
   int sum_of_wait_times_seconds = 0;
   double sum_of_adjusted_times_seconds = 0.0;
+  
+  //Redundant Code: sum_of_wait_times_seconds is set to zero twice
   sum_of_wait_times_seconds = 0;
   multimap<int, OneVoter>::iterator iter_multimap;
+  
+  //Computes the average wait time
   for (iter_multimap = voters_done_voting_.begin();
        iter_multimap != voters_done_voting_.end(); ++iter_multimap) {
     OneVoter voter = iter_multimap->second;
@@ -49,8 +78,8 @@ void OnePct::ComputeMeanAndDev() {
   }
   wait_mean_seconds_ = static_cast<double>(sum_of_wait_times_seconds)/
   static_cast<double>(pct_expected_voters_);
-
-  sum_of_adjusted_times_seconds = 0.0;
+  
+  //The standard deviation of wait times in seconds is computed here
   for (iter_multimap = voters_done_voting_.begin();
        iter_multimap != voters_done_voting_.end(); ++iter_multimap) {
     OneVoter voter = iter_multimap->second;
@@ -58,12 +87,28 @@ void OnePct::ComputeMeanAndDev() {
                       - wait_mean_seconds_;
 
     sum_of_adjusted_times_seconds += (this_addin) * (this_addin);
-  }
+  } //End for
   wait_dev_seconds_ = sqrt(sum_of_adjusted_times_seconds /
   static_cast<double>(pct_expected_voters_));
 }
 
 /****************************************************************
+ * Function CreateVoters
+ * Written by Alexander Reeser {
+ * This function populates the voters_backup_ map with all the voters
+ * of the day. This is done by taking the percentage of voters expected
+ * to vote in a given hour and multiplying that number by the total number
+ * of voters to get the number of voters to vote in that hour. This number 
+ * is used to calculate the average number of voters to arrive each second
+ * which is used to compute a RandomExponentialInt. This int corresponds
+ * to the time of the next voter's arrival in seconds. The time it takes the
+ * voter to vote is simulated with a RandomUniformInt using the size of
+ * the actual_service_times_ vector which is returned by the 
+ * GetMaxServiceSubscript function, as a seed. Finally, a voter is
+ * created using the sequence (voter number), arrival (arrival time),
+ * and duration (time it take the voter to vote) which is then added to the 
+ * voters_backup_ map.
+ * } endReeser 
 **/
 void OnePct::CreateVoters(const Configuration& config, MyRandom& random,
                           ofstream& out_stream) {
@@ -79,6 +124,8 @@ void OnePct::CreateVoters(const Configuration& config, MyRandom& random,
   percent = config.arrival_zero_;
   int voters_at_zero = round((percent / 100.0) * pct_expected_voters_);
   arrival = 0;
+  
+  //voters_at_zero is always zero.
   for (int voter = 0; voter < voters_at_zero; ++voter) {
     int durationsub = random.RandomUniformInt(0, config.GetMaxServiceSubscript());
     duration = config.actual_service_times_.at(durationsub);
@@ -87,20 +134,35 @@ void OnePct::CreateVoters(const Configuration& config, MyRandom& random,
     ++sequence;
   }
 
+  //Runs once for every hour the polls are open.
   for (int hour = 0; hour < config.election_day_length_hours_; ++hour) {
+    //Gets the percentage of voters voting at that hour.
     percent = config.arrival_fractions_.at(hour);
+    //Aproximates the number of voters in an hour
     int voters_this_hour = round((percent / 100.0) * pct_expected_voters_);
+    //Adds one to the number of voters in an hour half the time in order
+    //to offset the error caused by integers rounding down.
     if (0 == hour%2) 
       ++voters_this_hour;
-
+    
+    //Integer used to find the time of a voter's arrival in seconds
     int arrival = hour*3600;
     for(int voter = 0; voter < voters_this_hour; ++voter) {
+      //Finds the average number of voters arriving every second.
+      //This number is used to calculate a RandomExponentialInt
+      //which is used to simulate the time the next voter will arrive.
       double lambda = static_cast<double>(voters_this_hour / 3600.0);
       int interarrival = random.RandomExponentialInt(lambda);
       arrival += interarrival;
+      
+      //Gets a random voting duration from the actual_service_times_
+      //Integer vector by getting a random number with GetMaxServiceSubscript
       int durationsub = random.RandomUniformInt(0, config.GetMaxServiceSubscript());
       duration = config.actual_service_times_.at(durationsub);
 
+      //Creates a voter using the sequence (voter number), arrival (arrival time),
+      //and duration (time it take the voter to vote) then adds it to the 
+      //voters_backup_ map.
       OneVoter one_voter(sequence, arrival, duration);
       voters_backup_.insert(std::pair<int, OneVoter>(arrival, one_voter));
       ++sequence;
@@ -109,6 +171,10 @@ void OnePct::CreateVoters(const Configuration& config, MyRandom& random,
 }
 
 /******************************************************************************
+ * Function DoStatistics
+ * Written by Alexander Reeser {
+   
+ * } endReeser
 **/
 int OnePct::DoStatistics(int iteration, const Configuration& config,
                          int station_count, map<int, int>& map_for_histo,
@@ -193,6 +259,17 @@ void OnePct::ReadData(Scanner& infile) {
 } // void OnePct::ReadData(Scanner& infile)
 
 /****************************************************************
+ * Function RunSimulationPct
+ * Written by Alexander Reeser {
+ * This function starts by computing the range of stations for
+ * which the simulation will run. The min_station_count is 
+ * calculated by taking the expected voters in the precinct and
+ * multiplying that by the average time it takes one person to vote
+ * then dividing by the amount of time the polls are open. This
+ * number must be at least one, if it is not, it is set to one.
+ * The max_station_count is the min_station_count plus the 
+ * number of hours the polls are open. 
+ * } endReeser 
 **/
 void OnePct::RunSimulationPct(const Configuration& config,
                        MyRandom& random, ofstream& out_stream) {
@@ -206,6 +283,7 @@ void OnePct::RunSimulationPct(const Configuration& config,
   int max_station_count = min_station_count + config.election_day_length_hours_;
 
   bool done_with_this_count = false;
+  //The rest of the function is contained in this for loop
   for (int stations_count = min_station_count;
            stations_count <= max_station_count; ++stations_count) {
 
@@ -218,64 +296,68 @@ void OnePct::RunSimulationPct(const Configuration& config,
 
     outstring = kTag + this->ToString() + "\n";
     Utils::Output(outstring, out_stream, Utils::log_stream);
+    
     for (int iteration = 0;
          iteration < config.number_of_iterations_; ++iteration) {
+      //Calls CreateVoters
       this->CreateVoters(config, random, out_stream);
 
       voters_pending_ = voters_backup_;
       voters_voting_.clear();
       voters_done_voting_.clear();
 
+      //Calls RunSimulationPct2 
       this->RunSimulationPct2(stations_count);
+      
+      //Calls DoStatistics
       int number_too_long = DoStatistics(iteration, config, stations_count,
                                          map_for_histo, out_stream);
       if (number_too_long > 0) {
         done_with_this_count = false;
       }
-  }
-
-  voters_voting_.clear();
-  voters_done_voting_.clear();
-
-  outstring = kTag + "toolong space filler\n";
-  Utils::Output(outstring, out_stream, Utils::log_stream);
-
-  if (stations_to_histo_.count(stations_count) > 0) {
-    outstring = "\n" + kTag + "HISTO " + this->ToString() + "\n";
-    outstring += kTag + "HISTO STATIONS "
-              + Utils::Format(stations_count, 4) + "\n";
-    Utils::Output(outstring, out_stream, Utils::log_stream);
-
-    int time_lower = (map_for_histo.begin())->first;
-    int time_upper = (map_for_histo.rbegin())->first;
-
-    int voters_per_star = 1;
-    if (map_for_histo[time_lower] > 50) {
-      voters_per_star = map_for_histo[time_lower]/(50 * config.number_of_iterations_);
-      if (voters_per_star <= 0)
-        voters_per_star = 1;
     }
 
-    for (int time = time_lower; time <= time_upper; ++time) {
-      int count = map_for_histo[time];
+    voters_voting_.clear();
+    voters_done_voting_.clear();
 
-      double count_double = static_cast<double>(count) /
-      static_cast<double>(config.number_of_iterations_);
+    outstring = kTag + "toolong space filler\n";
+    Utils::Output(outstring, out_stream, Utils::log_stream);
 
-      int count_divided_ceiling = static_cast<int>(ceil(count_double/voters_per_star));
-      string stars = string(count_divided_ceiling, '*');
+    if (stations_to_histo_.count(stations_count) > 0) {
+      outstring = "\n" + kTag + "HISTO " + this->ToString() + "\n";
+      outstring += kTag + "HISTO STATIONS "
+                + Utils::Format(stations_count, 4) + "\n";
+      Utils::Output(outstring, out_stream, Utils::log_stream);
 
-      outstring = kTag + "HISTO " + Utils::Format(time, 6) + ": "
-                + Utils::Format(count_double, 7, 2) + ": ";
-      outstring += stars + "\n";
+      int time_lower = (map_for_histo.begin())->first;
+      int time_upper = (map_for_histo.rbegin())->first;
+
+      int voters_per_star = 1;
+      if (map_for_histo[time_lower] > 50) {
+        voters_per_star = map_for_histo[time_lower]/(50 * config.number_of_iterations_);
+        if (voters_per_star <= 0)
+          voters_per_star = 1;
+      }
+
+      for (int time = time_lower; time <= time_upper; ++time) {
+        int count = map_for_histo[time];
+
+        double count_double = static_cast<double>(count) /
+        static_cast<double>(config.number_of_iterations_);
+
+        int count_divided_ceiling = static_cast<int>(ceil(count_double/voters_per_star));
+        string stars = string(count_divided_ceiling, '*');
+
+        outstring = kTag + "HISTO " + Utils::Format(time, 6) + ": "
+                         + Utils::Format(count_double, 7, 2) + ": ";
+        outstring += stars + "\n";
+        Utils::Output(outstring, out_stream, Utils::log_stream);
+      }
+      outstring = "HISTO\n\n";
       Utils::Output(outstring, out_stream, Utils::log_stream);
     }
-    outstring = "HISTO\n\n";
-    Utils::Output(outstring, out_stream, Utils::log_stream);
   }
-}
-
-}
+} //void RunSimulationPct
 
 /****************************************************************
 *

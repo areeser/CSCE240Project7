@@ -1,10 +1,18 @@
 #include "onevoter.h"
 /****************************************************************
 * Implementation for the 'OneVoter' class.
+* Voters are created in voter precincts as part of the 
+* simulation. Each voter has a unique sequence, arrival time 
+* and duration of the voting process. Voters arrive at the 
+* precinct, wait to vote, place their vote at a voting station,
+* and the process is complete.
+*
+* Voter times are converted to seconds and used to calculate 
+* average wait time and other statistics. 
 *
 * Author/copyright:  Duncan Buell. All rights reserved.
-* Modified by Max Bozzi
-* Date: 30 November 2016
+* Modified by: Group 7
+* Date: 1 December 2016
 **/
 
 static const string kTag = "ONEVOTER: ";

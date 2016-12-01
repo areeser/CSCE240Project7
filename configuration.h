@@ -1,8 +1,14 @@
 /****************************************************************
  * Header for the 'Configuration' class
  *
+ * Each configuration has a unique, random seed to represent
+ * the different voter simulation. Each different configuration
+ * for a simulation set the member variables to differnt value
+ * and produces different output. 
+ *
  * Author/copyright:  Duncan Buell
- * Date: 19 July 2016
+ * Modified by: Group 7
+ * Date: 1 December 2016
  *
  **/
 

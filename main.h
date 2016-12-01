@@ -1,8 +1,9 @@
 /****************************************************************
- * Header for the 'Main' class.
+ * Generic header for 'main' class
  *
  * Author/copyright:  Duncan Buell
- * Date: 6 October 2016
+ * Modified by: Group 7
+ * Date: 1 December 2016
  *
 **/
 
