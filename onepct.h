@@ -56,7 +56,7 @@ class OnePct {
 public:
 /****************************************************************
  * Constructors and destructors for the class.
-**/
+ **/
  OnePct() = default;
  OnePct(Scanner& infile);
  virtual ~OnePct() = default;
@@ -99,9 +99,9 @@ private:
   multimap<int, OneVoter> voters_voting_;
 
 /****************************************************************
- * General private functions. Used to create voters within a 
+ * General private functions. Used to create voters within a
  * precinct and to compute the mean waiting time and the standard
- * deviation among waiting times for a precinct. 
+ * deviation among waiting times for a precinct.
 **/
   void CreateVoters(const Configuration& config, MyRandom& random,
                     ofstream& out_stream);

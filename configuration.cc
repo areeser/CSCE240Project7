@@ -125,12 +125,7 @@ void Configuration::ReadConfiguration(Scanner& instream) {
 
 /****************************************************************
  * Function: ToString
-<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< HEAD
- * Returns: the string s
-================================
  * Returns: the string s and formats it nicely for user
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> origin/master
- *
  **/
 string Configuration::ToString()
 {
