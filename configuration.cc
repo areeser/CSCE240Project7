@@ -3,23 +3,18 @@
  * Implementation for the 'Configuration' class.
  *
  * Author/copyright:  Duncan Buell. All rights reserved.
-<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< HEAD
- * Comments added by Alexander Reeser
- * Date: 1 December 2016
-================================
- * Modified by: Group 7 
+ * Modified by: Group 7
  * Date: 1 December 2016
  *
  * This configuration sets up the voter simulation and passes a
- * scanner. ReadConfiguration() reads the input data and assigns 
- * the values for election day length, number of iterations, and 
+ * scanner. ReadConfiguration() reads the input data and assigns
+ * the values for election day length, number of iterations, and
  * the time it took to vote. The actual service times are then
  * pushed back onto the vector actual_service_times_.
  *
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> origin/master
  **/
 
-/* File tag for output purposes. (Consider using __FILE__?) */
+// File tag for output purposes. (Consider using __FILE__?)
 static const string kTag = "CONFIG: ";
 
 /****************************************************************
@@ -73,41 +68,41 @@ void Configuration::ReadConfiguration(Scanner& instream) {
   string line;
   ScanLine scanline;
 
-  /* Each field read in here corresponds to the format of the configuration
-     file, which is text-oriented.  See ./xconfig100zero.txt for an example
-     configuration. */
+  // Each field read in here corresponds to the format of the configuration
+  // file, which is text-oriented.  See ./xconfig100zero.txt for an example
+  // configuration.
   line = instream.NextLine();
   scanline.OpenString(line);
 
-  /* Random number seed. */
+  // Random number seed.
   seed_ = scanline.NextInt();
-  /* How long is one election day? */
+  // How long is one election day?
   election_day_length_hours_   = scanline.NextInt();
   election_day_length_seconds_ = election_day_length_hours_ * 3600;
 
-  /* Average (mean) time for one voter to vote */
+  // Average (mean) time for one voter to vote
   time_to_vote_mean_seconds_   = scanline.NextInt();
 
   min_expected_to_simulate_    = scanline.NextInt();
   max_expected_to_simulate_ = scanline.NextInt();
   wait_time_minutes_that_is_too_long_ = scanline.NextInt();
 
-  /* run N simulations. */
+  // run N simulations.
   number_of_iterations_ = scanline.NextInt();
 
-  /* Pull the second line from the configuration file. */
+  // Pull the second line from the configuration file.
   line = instream.NextLine();
   scanline.OpenString(line);
 
   {
-    /* All of the data read in this block should sum to ~100.0
-       Careful w/ floating-point precision issues - see the single-line
-       comments for an example way to test for approximate accuracy. */
+    // All of the data read in this block should sum to ~100
+    // Careful w/ floating-point precision issues - see the single-line
+    // comments for an example way to test for approximate accuracy.
     // double sum = 0.0;
-    /* total percentage of voters who were waiting when the polls opened. */
+    // total percentage of voters who were waiting when the polls opened.
     arrival_zero_ = scanline.NextDouble();
     // sum += arrival_zero_;
-    /* Percentage of voters who arrive each hour, out of all voters. */
+    // Percentage of voters who arrive each hour, out of all voters.
     for (int sub = 0; sub < election_day_length_hours_; ++sub) {
       double input = scanline.NextDouble();
       // sum += input;
@@ -115,8 +110,8 @@ void Configuration::ReadConfiguration(Scanner& instream) {
     }
 
     // constexpr auto epsilon = 1.0e-7; /* some relatively small value */
-    /* Does everything sum to about 100%?  Use this hack for floating-point equality.
-       (There's more correct ways to do this, but they are very complex). */
+    // Does everything sum to about 100%?  Use this hack for floating-point equality.
+    // (There's more correct ways to do this, but they are very complex). */
     // assert(std::abs (sum - 100.0) <= epsilon);
   }
 
@@ -131,11 +126,11 @@ void Configuration::ReadConfiguration(Scanner& instream) {
 /****************************************************************
  * Function: ToString
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< HEAD
- * Returns: the string s 
+ * Returns: the string s
 ================================
  * Returns: the string s and formats it nicely for user
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> origin/master
- * 
+ *
  **/
 string Configuration::ToString()
 {
