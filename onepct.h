@@ -2,7 +2,7 @@
  * Header for the 'OnePct' class
  *
  * Author/copyright:  Duncan Buell
- * Modified by: Group 7
+ * Modified by: Project 7 Group
  * Date: 28 November 2016
  *
  * This is a header file for one voter precinct in a simulation.
