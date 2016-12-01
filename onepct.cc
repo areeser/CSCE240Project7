@@ -172,9 +172,19 @@ void OnePct::CreateVoters(const Configuration& config, MyRandom& random,
 
 /******************************************************************************
  * Function DoStatistics
- * Written by Alexander Reeser {
-   
- * } endReeser
+ * Written by Ahmed Abdellatif {
+ * The first map iterator is used to record the time in minutes 
+ * that it took a each voter in a precint to complete their vote. The 
+ * time in minutes is calculated by dividing the seconds (in GetTimeWaiting function) 
+ * by 60.The second auto iterator implemented is used to calculate the wait times
+ * for voter that would be considered "too long" in a precinct.This is acheived by 
+ * iterating through the map of wait times and using three conditional if statements 
+ * to establish a range of wait times that would be considered too long in a precinct.
+ * The first if statement does not increment, but the second and third will increment 
+ * by 10 minutes respectively.
+ *
+ *
+ * } endAhmed
 **/
 int OnePct::DoStatistics(int iteration, const Configuration& config,
                          int station_count, map<int, int>& map_for_histo,
