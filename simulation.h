@@ -1,8 +1,13 @@
 /****************************************************************
- * Header for the 'Simulation' class.
+ * Header for the 'Simulation' class. 
+ * A simulation creates precincts 
+ * and voters within those precincts and simulates
+ * voting times and other relevant details (waiting time, voting 
+ * station, precinct details). 
  *
  * Author/copyright:  Duncan Buell
- * Date: 19 July 2016
+ * Modified by: Group 7
+ * Date: 1 December 2016
  *
  **/
 
@@ -30,7 +35,9 @@ public:
   virtual ~Simulation() = default;
 
   /****************************************************************
-   * General functions.
+   * General functions to begin the simulation based on a random 
+   * seed paramter and using the configuration class and ofstream
+   * ToString() and ToStringPcts() format output for precincts
    **/
   void ReadPrecincts(Scanner& infile);
   void RunSimulation(const Configuration& config,
@@ -40,7 +47,7 @@ public:
 
 private:
   /****************************************************************
-   * Variables.
+   * Variables, a map of all voter precincts. 
    **/
   map<int, OnePct> pcts_;
 
