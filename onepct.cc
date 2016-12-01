@@ -21,6 +21,8 @@ OnePct::OnePct(Scanner& infile) {
 **/
 
 /****************************************************************
+* Accessor GetExpectedVoters
+* Returns the int pct_expected_voters_
 **/
 int OnePct::GetExpectedVoters() const {
   return pct_expected_voters_;
@@ -35,7 +37,9 @@ int OnePct::GetPctNumber() const {
 /****************************************************************
 * General functions.
 **/
+
 /******************************************************************************
+* 
 **/
 void OnePct::ComputeMeanAndDev() {
   int sum_of_wait_times_seconds = 0;
@@ -193,6 +197,19 @@ void OnePct::ReadData(Scanner& infile) {
 } // void OnePct::ReadData(Scanner& infile)
 
 /****************************************************************
+ * Function: RunSimulationPct
+ * Written by Alexander Reeser {
+ * The min_station_count for the pct is calculated by multiplying 
+ * the number of voters in the pct times the average time it takes
+ * for one person to vote and dividing that number by the amount 
+ * of time the polls are open in seconds. This result must be at
+ * least 1. If not it is set to 1. The max_station_count for the
+ * pct is calculated by adding the number of hours the polls are 
+ * open to the min_station_count. 
+ * The function then enters a for loop which runs once for every 
+ * int from min_station_count to max_station_count inclusively.
+ * TODO FINISH LOOP DESCRIPTION
+ * } endReeser
 **/
 void OnePct::RunSimulationPct(const Configuration& config,
                        MyRandom& random, ofstream& out_stream) {
@@ -200,6 +217,7 @@ void OnePct::RunSimulationPct(const Configuration& config,
 
   int min_station_count = pct_expected_voters_ * config.time_to_vote_mean_seconds_;
   min_station_count = min_station_count / (config.election_day_length_hours_*3600);
+  //min_station_count = voters * average voting time / election day length in seconds
   if (min_station_count <= 0)
     min_station_count = 1;
 
@@ -220,61 +238,63 @@ void OnePct::RunSimulationPct(const Configuration& config,
     Utils::Output(outstring, out_stream, Utils::log_stream);
     for (int iteration = 0;
          iteration < config.number_of_iterations_; ++iteration) {
+           //Runs a number of times equal to config.number_of_iterations_
       this->CreateVoters(config, random, out_stream);
-
+      //Calls CreateVoters
       voters_pending_ = voters_backup_;
       voters_voting_.clear();
       voters_done_voting_.clear();
 
       this->RunSimulationPct2(stations_count);
+      //Calls RunSimulationPct2
       int number_too_long = DoStatistics(iteration, config, stations_count,
                                          map_for_histo, out_stream);
+      //Calls DoStatistics
       if (number_too_long > 0) {
         done_with_this_count = false;
       }
-  }
+    } //End of iterations
+    //Begining of Computations for output
+    voters_voting_.clear();
+    voters_done_voting_.clear();
 
-  voters_voting_.clear();
-  voters_done_voting_.clear();
-
-  outstring = kTag + "toolong space filler\n";
-  Utils::Output(outstring, out_stream, Utils::log_stream);
-
-  if (stations_to_histo_.count(stations_count) > 0) {
-    outstring = "\n" + kTag + "HISTO " + this->ToString() + "\n";
-    outstring += kTag + "HISTO STATIONS "
-              + Utils::Format(stations_count, 4) + "\n";
+    outstring = kTag + "toolong space filler\n";
     Utils::Output(outstring, out_stream, Utils::log_stream);
 
-    int time_lower = (map_for_histo.begin())->first;
-    int time_upper = (map_for_histo.rbegin())->first;
-
-    int voters_per_star = 1;
-    if (map_for_histo[time_lower] > 50) {
-      voters_per_star = map_for_histo[time_lower]/(50 * config.number_of_iterations_);
-      if (voters_per_star <= 0)
-        voters_per_star = 1;
-    }
-
-    for (int time = time_lower; time <= time_upper; ++time) {
-      int count = map_for_histo[time];
-
-      double count_double = static_cast<double>(count) /
-      static_cast<double>(config.number_of_iterations_);
-
-      int count_divided_ceiling = static_cast<int>(ceil(count_double/voters_per_star));
-      string stars = string(count_divided_ceiling, '*');
-
-      outstring = kTag + "HISTO " + Utils::Format(time, 6) + ": "
-                + Utils::Format(count_double, 7, 2) + ": ";
-      outstring += stars + "\n";
+    if (stations_to_histo_.count(stations_count) > 0) {
+      outstring = "\n" + kTag + "HISTO " + this->ToString() + "\n";
+      outstring += kTag + "HISTO STATIONS "
+                + Utils::Format(stations_count, 4) + "\n";
       Utils::Output(outstring, out_stream, Utils::log_stream);
-    }
-    outstring = "HISTO\n\n";
-    Utils::Output(outstring, out_stream, Utils::log_stream);
-  }
-}
 
+      int time_lower = (map_for_histo.begin())->first;
+      int time_upper = (map_for_histo.rbegin())->first;
+
+      int voters_per_star = 1;
+      if (map_for_histo[time_lower] > 50) {
+        voters_per_star = map_for_histo[time_lower]/(50 * config.number_of_iterations_);
+        if (voters_per_star <= 0)
+          voters_per_star = 1;
+      }
+
+      for (int time = time_lower; time <= time_upper; ++time) {
+        int count = map_for_histo[time];
+
+        double count_double = static_cast<double>(count) /
+        static_cast<double>(config.number_of_iterations_);
+
+        int count_divided_ceiling = static_cast<int>(ceil(count_double/voters_per_star));
+        string stars = string(count_divided_ceiling, '*');
+
+        outstring = kTag + "HISTO " + Utils::Format(time, 6) + ": "
+                + Utils::Format(count_double, 7, 2) + ": ";
+        outstring += stars + "\n";
+        Utils::Output(outstring, out_stream, Utils::log_stream);
+      }
+      outstring = "HISTO\n\n";
+      Utils::Output(outstring, out_stream, Utils::log_stream);
+    }//end of computations for output
+  }//End of Simulation for loop
 }
 
 /****************************************************************
