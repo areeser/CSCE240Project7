@@ -1,5 +1,6 @@
 /****************************************************************
- * Main program for simulation.
+ * Main program for simulation. Configures and runs
+ * a polling simulation for voter precincts. 
  *
  * Author/copyright:  Duncan Buell. All rights reserved.
  * Modified by: Group 7
