@@ -6,6 +6,10 @@
 * Commented by Alexander Reeser
 * Date: 1 December 2016
 *
+* The main purpose of this class is to run simulations to determine
+* if the maximum time the single voter has to wait vote is considered too
+* long based on the input of the user.
+*
 **/
 
 static const string kTag = "OnePct: ";
