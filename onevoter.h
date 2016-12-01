@@ -10,7 +10,7 @@
  * a part of a voter precinct (onepct.cc). 
  *
  * Author/copyright:  Duncan Buell
- * Modified by Group 7
+ * Modified by: Project 7 Group
  * Date: 1 December 2016
  *
 **/
