@@ -11,7 +11,7 @@
 * average wait time and other statistics. 
 *
 * Author/copyright:  Duncan Buell. All rights reserved.
-* Modified by: Group 7
+* Modified by: Project 7 Group
 * Date: 1 December 2016
 **/
 
