@@ -3,7 +3,7 @@
  * Implementation for the 'Configuration' class.
  *
  * Author/copyright:  Duncan Buell. All rights reserved.
- * Modified by: Group 7
+ * Modified by: Group 6
  * Date: 1 December 2016
  *
  * This configuration sets up the voter simulation and passes a
