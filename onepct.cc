@@ -171,6 +171,10 @@ void OnePct::CreateVoters(const Configuration& config, MyRandom& random,
 }
 
 /******************************************************************************
+ * Function DoStatistics
+ * Written by Alexander Reeser {
+   
+ * } endReeser
 **/
 int OnePct::DoStatistics(int iteration, const Configuration& config,
                          int station_count, map<int, int>& map_for_histo,
@@ -353,7 +357,7 @@ void OnePct::RunSimulationPct(const Configuration& config,
       Utils::Output(outstring, out_stream, Utils::log_stream);
     }
   }
-}
+} //void RunSimulationPct
 
 /****************************************************************
 *
