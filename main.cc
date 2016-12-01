@@ -3,7 +3,7 @@
  * a polling simulation for voter precincts. 
  *
  * Author/copyright:  Duncan Buell. All rights reserved.
- * Modified by: Project 7 group
+ * Modified by: Group 6 
  * Date: 1 December 2016
  *
 **/
