@@ -70,12 +70,14 @@ int OneVoter::GetTimeInQ() const {
 }
 
 /****************************************************************
+ * Function GetTOD
+ *
+ * Return the time of day from a number of seconds relative to
+ * time 0 -- the beginning of the voting period.
 **/
 string OneVoter::GetTOD(int time_in_seconds) const {
-//  int offset_hours = 6;
-  int offset_hours = 0;
-  string s = "";
-  return this->ConvertTime(time_in_seconds + offset_hours*3600);
+  constexpr int offset_hours = 0, seconds_in_hour = 60 * 60;
+  return this->ConvertTime(time_in_seconds + offset_hours * seconds_in_hour);
 }
 
 /****************************************************************
